@@ -66,7 +66,7 @@ TrustVault/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/Neha likhitha/TrustVault.git
+git clone https://github.com/nehalikhitha/TrustVault.git
 cd TrustVault
 ```
 
