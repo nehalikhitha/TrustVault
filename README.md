@@ -110,4 +110,4 @@ python manage.py migrate
 ### 7. Start the development server
 
 ```bash
-python
+python manage.py runserver
