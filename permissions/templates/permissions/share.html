@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Share Document | TrustVault</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 30px 15px;
+            background: #0b1220;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 550px;
+            margin: 60px auto;
+            padding: 35px;
+            background: #172238;
+            border: 1px solid #334155;
+            border-radius: 12px;
+        }
+
+        h1 {
+            color: #38bdf8;
+            margin-top: 0;
+        }
+
+        .document-name {
+            color: #cbd5e1;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin: 18px 0 8px;
+            color: #cbd5e1;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            background: #0b1220;
+            color: white;
+            border: 1px solid #475569;
+            border-radius: 7px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 14px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 22px;
+            color: #38bdf8;
+            text-decoration: none;
+        }
+
+        .errorlist {
+            color: #f87171;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Share Document</h1>
+
+        <p class="document-name">
+            Document:
+            <strong>{{ document.title }}</strong>
+        </p>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            {{ form.non_field_errors }}
+
+            <label for="{{ form.user.id_for_label }}">
+                Select User
+            </label>
+
+            {{ form.user }}
+            {{ form.user.errors }}
+
+            <label for="{{ form.access_level.id_for_label }}">
+                Access Permission
+            </label>
+
+            {{ form.access_level }}
+            {{ form.access_level.errors }}
+
+            <button type="submit">
+                Share Document
+            </button>
+
+        </form>
+
+        <a href="{% url 'dashboard' %}" class="back">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</body>
+</html>

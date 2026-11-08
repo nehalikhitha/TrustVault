@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrustVault | Secure Document Management</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0b1220;
+            color: white;
+        }
+
+        nav {
+            height: 75px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 8%;
+            border-bottom: 1px solid #263247;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: bold;
+            color: #38bdf8;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+        }
+
+        .login-btn {
+            background: #0284c7;
+            padding: 11px 22px;
+            border-radius: 7px;
+        }
+
+        .hero {
+            min-height: 580px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 70px 8%;
+            gap: 40px;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            line-height: 1.2;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: #38bdf8;
+        }
+
+        .hero p {
+            color: #aab7ca;
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .primary-btn {
+            display: inline-block;
+            background: #0284c7;
+            padding: 15px 28px;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .hero-card {
+            width: 380px;
+            padding: 35px;
+            background: #172337;
+            border: 1px solid #334155;
+            border-radius: 18px;
+            box-shadow: 0 15px 50px #0005;
+        }
+
+        .hero-card h2 {
+            color: #38bdf8;
+            margin-bottom: 25px;
+        }
+
+        .feature {
+            padding: 17px;
+            background: #223249;
+            border-radius: 9px;
+            margin-bottom: 15px;
+            color: #dbeafe;
+        }
+
+        .features {
+            padding: 65px 8%;
+            background: #111c2e;
+            text-align: center;
+        }
+
+        .features h2 {
+            font-size: 35px;
+            margin-bottom: 35px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .feature-box {
+            padding: 30px;
+            background: #1b2a40;
+            border-radius: 12px;
+        }
+
+        .feature-box h3 {
+            color: #38bdf8;
+            margin-bottom: 15px;
+        }
+
+        .feature-box p {
+            color: #aab7ca;
+            line-height: 1.6;
+        }
+
+        footer {
+            padding: 25px;
+            text-align: center;
+            color: #94a3b8;
+        }
+
+        @media(max-width: 800px) {
+            .hero {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero-card {
+                width: 100%;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                padding: 0 5%;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <header>
+        <h2>TrustVault</h2>
+
+        <nav>
+            <a href="/">Home</a>
+
+            {% if user.is_authenticated %}
+                <span>Welcome, {{ user.username }}</span>
+
+                <form method="POST" action="{% url 'logout' %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'register' %}">Register</a>
+            {% endif %}
+
+            <a href="/admin/">Admin</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Your Documents. Your Security.</h1>
+        <p>Secure document sharing with role-based access and audit tracking.</p>
+
+        {% if not user.is_authenticated %}
+            <a href="{% url 'register' %}">Get Started</a>
+        {% else %}
+            <p>You are successfully logged in to TrustVault.</p>
+        {% endif %}
+    </main>
+
+</body>
